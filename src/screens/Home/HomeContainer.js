@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import HomeScreen from './HomeScreen';
 import { TEST_ACTION } from '../../constants/actionTypes';
+import { database } from '../../firebase';
 
 class HomeContainer extends Component {
 
@@ -14,6 +15,7 @@ class HomeContainer extends Component {
 
     testSaga = () => {
         const {fireAction} = this.props;
+        console.log('DATAaBaSaE', database);
         fireAction();
     }
 

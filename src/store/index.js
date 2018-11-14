@@ -2,7 +2,8 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import createSagaMiddleware from 'redux-saga';
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import { reactReduxFirebase } from 'react-redux-firebase';
+import firebase from 'react-native-firebase';
 
 import startApp from '../navigation/startApp';
 import rootReducer from './reducers';
@@ -24,8 +25,16 @@ if (__DEV__) {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+const config = {
+    userProfile: 'users', // saves user profiles to '/users' on Firebase
+    // here is where you place other config options
+  };
+
 const configureStore = ({ startScreenName }) => {
-    const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
+    const store = createStore(persistedReducer, composeEnhancers(
+        applyMiddleware(sagaMiddleware),
+        reactReduxFirebase(firebase, config)
+        ));
     sagaMiddleware.run(rootSaga);
     const persistor = persistStore(store, null, () => startApp(startScreenName));
   return { store, persistor };

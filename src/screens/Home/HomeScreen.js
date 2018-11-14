@@ -9,7 +9,7 @@ const HomeScreen = ({ onPress }) => (
             <H1>Home</H1>
             <Button onPress={onPress}>
                 <Text>
-                    Test
+                    TaSt
                 </Text>
             </Button>
         </Content>

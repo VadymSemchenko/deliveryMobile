@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "541308684378",
+    "firebase_url": "https://squire-delivery.firebaseio.com",
+    "project_id": "squire-delivery",
+    "storage_bucket": "squire-delivery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541308684378:android:e2cb85f1a549bb91",
+        "android_client_info": {
+          "package_name": "com.deliverymobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541308684378-s5ibf3n846ndtdpgg4caf5kosr4aal39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZRXFtgGrQmdFQbN0-Ms58PHI-ta6HfOA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
