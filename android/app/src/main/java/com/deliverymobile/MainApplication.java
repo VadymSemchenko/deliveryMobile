@@ -3,6 +3,7 @@ package com.deliverymobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -15,6 +16,7 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 // import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 // import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 // import io.invertase.firebase.config.RNFirebaseRemoteConfigPackage;
@@ -54,7 +56,8 @@ public class MainApplication extends NavigationApplication {
             new VectorIconsPackage(),
             new RNFirebasePackage(),
             new RNFirebaseDatabasePackage(),
-            new RNFirebaseAuthPackage()
+            new RNFirebaseAuthPackage(),
+            new RNGoogleSigninPackage()
         );
     }
 

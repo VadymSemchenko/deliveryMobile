@@ -1,22 +1,26 @@
 import { Navigation } from 'react-native-navigation';
 
-import persistedScreen from '../decorators/persistedScreen';
+import * as Screens from '../screens';
+import { REGISTER_SCREENS } from '../constants/actionTypes';
+import PROJECT_NAME from '../constants/projectName';
+import startApp from './startApp';
+import { persistedScreen } from '../decorators';
 
-export default ({ screens, projectName, store, persistor, provider, successActionType }) => {
-    const screensNames = Object.values(screens).reduce((accumulator, item) => {
-            const { component, name, needsStore } = item;
-            const returnComponent = needsStore ? () => persistedScreen({ component, provider, store, persistor }): () => component;
-            const fullComponentName = `${projectName}.${name}`;
+export default ({ store, persistor }) => {
+    const SCREENS_NAMES = Object.values(Screens).reduce((accumulator, item) => {
+            const { component, name } = item;
+            const decoratedComponent = () => persistedScreen({ component, store, persistor });
+            const fullComponentName = `${PROJECT_NAME}.${name}`;
             accumulator[name] = fullComponentName;
             Navigation.registerComponent(
                 fullComponentName,
-                returnComponent,
+                decoratedComponent,
                 );
             return accumulator;
         }, {});
     store.dispatch({
-        type: successActionType,
-        payload: screensNames
+        type: REGISTER_SCREENS,
+        payload: SCREENS_NAMES
     });
-    return screensNames;
+    startApp(SCREENS_NAMES.HOME);
 };

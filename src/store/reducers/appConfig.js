@@ -1,13 +1,14 @@
-import { REGISTER_SCREENS } from '../../constants/actionTypes';
+import { REGISTER_SCREENS, SEND_ERROR } from '../../constants/actionTypes';
 import { ENGLISH } from '../../constants/languages';
 
-export const initialState = {
+const initialState = {
     loading: false,
     lang: ENGLISH,
-    screens: {}
+    screens: {},
+    err: ''
 };
 
-const appConfigReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
     const { type, payload } = action;
     switch(type) {
         case REGISTER_SCREENS:
@@ -15,9 +16,12 @@ const appConfigReducer = (state = initialState, action) => {
                 ...state,
                 screens: payload
             };
+        case SEND_ERROR:
+            return {
+                ...state,
+                error: payload
+            };
         default:
             return state;
     }
 };
-
-export default appConfigReducer;

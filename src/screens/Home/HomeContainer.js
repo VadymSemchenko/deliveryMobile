@@ -1,34 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import HomeScreen from './HomeScreen';
-import { TEST_ACTION } from '../../constants/actionTypes';
-import { database } from '../../firebase';
+import { attemptAuthGoogle, attemptSignOut, attemptCheckAuth } from '../../actions/auth';
 
-class HomeContainer extends Component {
+export class HomeContainer extends Component {
 
     render() {
         return (
-            <HomeScreen onPress={this.testSaga}/>
+            <HomeScreen signIn={this.signIn} signOut={this.signOut} checkAuth={this.checkAuth} />
         );
     }
 
-    testSaga = () => {
-        const {fireAction} = this.props;
-        console.log('DATAaBaSaE', database);
-        fireAction();
-    }
+    signIn = () => {
+        const { attemptAuthGoogle } = this.props;
+        attemptAuthGoogle();
+    };
+
+    signOut = () => {
+        const { attemptSignOut } = this.props;
+        attemptSignOut();
+    };
+
+    checkAuth = () => {
+        const { attemptCheckAuth } = this.props;
+        attemptCheckAuth();
+    };
 
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    fireAction: () => dispatch({ type: TEST_ACTION })
-  });
-
-HomeContainer = connect(null, mapDispatchToProps)(HomeContainer);
+const mapDispatchToProps = dispatch => bindActionCreators({
+    attemptAuthGoogle,
+    attemptSignOut,
+    attemptCheckAuth
+}, dispatch);
 
 export default {
-    component: HomeContainer,
-    name: 'HOME',
-    needsStore: true
+    component: connect(null, mapDispatchToProps)(HomeContainer),
+    name: 'HOME'
 };

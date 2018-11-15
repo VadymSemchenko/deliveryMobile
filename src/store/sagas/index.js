@@ -1,7 +1,19 @@
-import { take, fork, takeEvery } from 'redux-saga/effects';
+import { take, call, fork, takeEvery, takeLatest } from 'redux-saga/effects';
 
-import { TEST_ACTION } from '../../constants/actionTypes';
+import authSaga from './auth/rootAuthSaga';
+// import { ATTEMPT_SIGN_IN, ATTEMPT_SIGN_OUT } from '../../constants/actionTypes';
 
-export default function* () {
-    yield takeEvery(TEST_ACTION, () => console.log('TEST'));
+
+// function* watcherSaga() {
+//     yield takeLatest(ATTEMPT_SIGN_OUT, () => { console.log('ATTEMPT_SIGN_OUT AT ROOT SAGA') });
+//     const { payload } = yield take(ATTEMPT_SIGN_IN);
+//     yield fork(authSaga, payload);
+// };
+
+// export default watcherSaga;
+
+function* rootSaga() {
+    yield fork(authSaga);
 };
+
+export default rootSaga;
