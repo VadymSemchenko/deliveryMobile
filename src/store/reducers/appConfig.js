@@ -1,11 +1,12 @@
-import { REGISTER_SCREENS, SEND_ERROR } from '../../constants/actionTypes';
+import { REGISTER_SCREENS, SEND_ERROR, SET_ACTIVE_COMPONENT } from '../../constants/actionTypes';
 import { ENGLISH } from '../../constants/languages';
 
 const initialState = {
     loading: false,
     lang: ENGLISH,
     screens: {},
-    err: ''
+    err: '',
+    activeComponent: {}
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +21,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 error: payload
+            };
+        case SET_ACTIVE_COMPONENT:
+            return {
+                ...state,
+                activeComponent: payload
             };
         default:
             return state;

@@ -18,7 +18,7 @@ const HomeScreen = ({ signIn, signOut, checkAuth }) => {
                     />
                 <Button onPress={checkAuth} danger>
                     <Text>
-                        CheckAth
+                        CheckAuth
                     </Text>
                 </Button>
                 <Button onPress={signOut} primary>

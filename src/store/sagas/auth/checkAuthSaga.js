@@ -1,7 +1,7 @@
 import { take, call, fork, takeEvery, takeLatest } from 'redux-saga/effects';
 
 import { ATTEMPT_CHECK_AUTH } from '../../../constants/actionTypes';
-import { checkGoogleAuth } from '../../../authorisation/google'
+import { checkGoogleAuth } from '../../../actions/authorisation/google';
 
 function* checkAuthSaga() {
     yield takeEvery(ATTEMPT_CHECK_AUTH, checkAuth);

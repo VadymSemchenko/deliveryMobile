@@ -1,5 +1,5 @@
-import { ATTEMPT_SIGN_IN, ATTEMPT_SIGN_OUT, ATTEMPT_CHECK_AUTH } from '../constants/actionTypes';
-import { GOOGLE } from '../constants/authProviders';
+import { ATTEMPT_SIGN_IN, ATTEMPT_SIGN_OUT, ATTEMPT_CHECK_AUTH } from '../../constants/actionTypes';
+import { GOOGLE } from '../../constants/authProviders';
 
 
 export const attemptAuthGoogle = () => ({

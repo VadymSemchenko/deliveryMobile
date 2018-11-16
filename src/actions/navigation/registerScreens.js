@@ -1,10 +1,12 @@
 import { Navigation } from 'react-native-navigation';
 
-import * as Screens from '../screens';
-import { REGISTER_SCREENS } from '../constants/actionTypes';
-import PROJECT_NAME from '../constants/projectName';
+import * as Screens from '../../screens';
+import { REGISTER_SCREENS } from '../../constants/actionTypes';
+import PROJECT_NAME from '../../constants/projectName';
 import startApp from './startApp';
-import { persistedScreen } from '../decorators';
+import { persistedScreen } from '../../decorators';
+import { setActiveComponent } from '../creators/navigation';
+import navButtonsListener from './navButtonsListener';
 
 export default ({ store, persistor }) => {
     const SCREENS_NAMES = Object.values(Screens).reduce((accumulator, item) => {
@@ -23,4 +25,8 @@ export default ({ store, persistor }) => {
         payload: SCREENS_NAMES
     });
     startApp(SCREENS_NAMES.HOME);
+    Navigation.events().registerComponentDidAppearListener(activeComponent => {
+        store.dispatch(setActiveComponent(activeComponent));
+    });
+    Navigation.events().registerNavigationButtonPressedListener(event => navButtonsListener({ event, store }));
 };

@@ -2,31 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import HomeScreen from './HomeScreen';
+import ErrorModalScreen from './ErrorModalScreen';
 import { attemptAuthGoogle, attemptSignOut, attemptCheckAuth } from '../../actions/creators/auth';
 
 export class HomeContainer extends Component {
 
     render() {
+        const { message } = this.props;
+        console.log('THIS.PROPS', this.props);
         return (
-            <HomeScreen signIn={this.signIn} signOut={this.signOut} checkAuth={this.checkAuth} />
+            <ErrorModalScreen message={message} />
         );
     }
-
-    signIn = () => {
-        const { attemptAuthGoogle } = this.props;
-        attemptAuthGoogle();
-    };
-
-    signOut = () => {
-        const { attemptSignOut } = this.props;
-        attemptSignOut();
-    };
-
-    checkAuth = () => {
-        const { attemptCheckAuth } = this.props;
-        attemptCheckAuth();
-    };
 
 };
 
@@ -38,5 +25,5 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 export default {
     component: connect(null, mapDispatchToProps)(HomeContainer),
-    name: 'HOME'
+    name: 'ERROR_MODAL'
 };

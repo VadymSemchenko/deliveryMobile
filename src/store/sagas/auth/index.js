@@ -5,11 +5,9 @@ import signInSaga from './signInSaga';
 import checkAuthSaga from './checkAuthSaga';
 import signOutSaga from './signOutSaga';
 
-function* authSaga() {
+export default function*() {
     yield fork(authChannelWatcherSaga);
     yield fork(signInSaga);
     yield fork(checkAuthSaga);
     yield fork(signOutSaga);
 };
-
-export default authSaga;
